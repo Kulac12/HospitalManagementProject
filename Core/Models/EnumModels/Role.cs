@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Domain_one.HospitalDatabase.EnumModels
+namespace Core.Models.EnumModels
 {
     public enum Role
     {

@@ -11,9 +11,7 @@ using System.Threading.Tasks;
 
 namespace Domain_one.HospitalDatabase.Tables.Base
 {
-    /// <summary>
-    /// 
-    /// </summary>
+   
     public class BaseEntity
     {
         [Key]

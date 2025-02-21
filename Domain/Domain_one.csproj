@@ -7,8 +7,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Business\Business_three.csproj" />
     <ProjectReference Include="..\ConsoleUI\ConsoleUI.csproj" />
     <ProjectReference Include="..\Core\Core.csproj" />
+    <ProjectReference Include="..\WebAPI\WebAPI.csproj" />
   </ItemGroup>
 
   <ItemGroup>

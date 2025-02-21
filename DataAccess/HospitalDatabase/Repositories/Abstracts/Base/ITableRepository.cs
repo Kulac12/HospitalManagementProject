@@ -17,7 +17,7 @@ namespace DataAccess_two.HospitalDatabase.Repositories.Abstracts.Base
     //new()  : new'lenebilir olmalı
 
     //EnginDemiroğ -->IEntityRepository<T> where T : class, IEntity, new()
-    public interface ITableRepository<T> where T:class, IEntity, new()
+    public interface ITableRepository<T> where T:BaseEntity, IEntity, new()
     {
         List<T> GetAll(Expression<Func<T, bool>> filter = null);
         T Get(Expression<Func<T, bool>> filter);
