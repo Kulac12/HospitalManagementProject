@@ -1,0 +1,20 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Folder Include="AC\Concrete\" />
+    <Folder Include="BusinessAspect\Autofac\" />
+    <Folder Include="Messages\ValidationMessages\" />
+    <Folder Include="Messages\ResponseMessages\" />
+    <Folder Include="AC\Abstract\" />
+    <Folder Include="Services\Abstract\" />
+    <Folder Include="Services\Concretes\" />
+    <Folder Include="Validation\" />
+  </ItemGroup>
+
+</Project>
