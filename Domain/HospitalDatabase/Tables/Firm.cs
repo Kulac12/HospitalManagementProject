@@ -1,4 +1,5 @@
-﻿using Domain_one.HospitalDatabase.Tables.Base;
+﻿using Domain_one.AC.Abstract;
+using Domain_one.HospitalDatabase.Tables.Base;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -8,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Domain_one.HospitalDatabase.Tables
 {
-    public class Firm:BaseEntity
+    public class Firm:BaseEntity,IEntity
     {
         public string Name { get; set; }
         public string FirmCode { get; set; }

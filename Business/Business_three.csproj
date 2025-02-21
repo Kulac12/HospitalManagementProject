@@ -12,8 +12,6 @@
     <Folder Include="Messages\ValidationMessages\" />
     <Folder Include="Messages\ResponseMessages\" />
     <Folder Include="AC\Abstract\" />
-    <Folder Include="Services\Abstract\" />
-    <Folder Include="Services\Concretes\" />
     <Folder Include="Validation\" />
   </ItemGroup>
 

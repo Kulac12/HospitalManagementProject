@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Domain_one.AC.Abstract;
+
 
 
 
@@ -14,7 +14,7 @@ namespace Domain_one.HospitalDatabase.Tables.Base
     /// <summary>
     /// 
     /// </summary>
-    public class BaseEntity:IEntity
+    public class BaseEntity
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
