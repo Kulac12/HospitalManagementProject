@@ -11,13 +11,74 @@ using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 using TMS.Core.Models.PaginationModels;
-using Domain_one.AC.Abstract;
+using Core.Domain_one.Abstract;
 
 namespace DataAccess_two.HospitalDatabase.Repositories.Concretes.Base
 {
-    public class TableRepository<T> : ITableRepository<T> where T : BaseEntity, IEntity
+    public class TableRepository<TEntity,TContext> : ITableRepository<TEntity> 
+        where TEntity : BaseEntity, IEntity
+        where TContext : DbContext, new()
     {
-        public DbSet<T> Table => _dbContext.Set<T>();
+        public void Add(TEntity entity)
+        {
+            //Idisposabe pattern implementation of c#
+            using (TContext context = new TContext())
+            {
+                var addedEntity = context.Entry(entity);
+                addedEntity.State = EntityState.Added;
+                context.SaveChanges();
+
+            }
+        }
+
+        public void Delete(TEntity entity)
+        {
+            //Idisposabe pattern implementation of c#
+            using (TContext context = new TContext())
+            {
+                var deletedEntity = context.Entry(entity);
+                deletedEntity.State = EntityState.Deleted;
+                context.SaveChanges();
+
+            }
+        }
+
+        public TEntity Get(Expression<Func<TEntity, bool>> filter)
+        {
+            using (TContext context = new TContext())
+            {
+                return context.Set<TEntity>().SingleOrDefault(filter);
+            }
+        }
+
+        public List<TEntity> GetAll(Expression<Func<TEntity, bool>> filter = null)
+        {
+
+            using (TContext context = new TContext())
+            {
+                return filter == null
+                    ? context.Set<TEntity>().ToList()
+                    : context.Set<TEntity>().Where(filter).ToList();
+            }
+
+
+        }
+
+        public void Update(TEntity entity)
+        {
+            //Idisposabe pattern implementation of c#
+            using (TContext context = new TContext())
+            {
+                var updatedEntity = context.Entry(entity);
+                updatedEntity.State = EntityState.Modified;
+                context.SaveChanges();
+
+            }
+        }
+
+
+
+        public DbSet<TEntity> Table => _dbContext.Set<TEntity>();
         protected DbContext _dbContext;
         private readonly IHttpContextAccessor httpContextAccessor;
 
@@ -27,52 +88,31 @@ namespace DataAccess_two.HospitalDatabase.Repositories.Concretes.Base
             this.httpContextAccessor = httpContextAccessor;
         }
 
-        public async Task<T> AddAsync(T entity, bool save = false)
+        public async Task<TEntity> AddAsync(TEntity entity, bool save = false)
         {
             var a = await Table.AddAsync(entity);
             if (!save || await _dbContext.SaveChangesAsync() > 0)
                 return a.Entity;
             return null;
         }
-        public async Task<T> AddOrUpdateAsync(T entity)
+        public async Task<TEntity> AddOrUpdateAsync(TEntity entity)
         {
-            EntityEntry<T> entry = Table.Find(entity.Id) == null
+            EntityEntry<TEntity> entry = Table.Find(entity.Id) == null
                 ? await Table.AddAsync(entity)
                 : Table.Update(entity);
             return entry.Entity;
         }
-        public async Task AddRangeAsync(IEnumerable<T> entities)
+        public async Task AddRangeAsync(IEnumerable<TEntity> entities)
         {
             await Table.AddRangeAsync(entities);
         }
-        public void Delete(T entity)
-        {
-            try
-            {
-                entity.Deleted = true;
-                Table.Update(entity);
-            }
-            catch (Exception ex)
-            {
-
-                throw;
-            }
-        }
-        public void Remove(T entity)
+        
+        public void Remove(TEntity entity)
         {
             Table.Remove(entity);
         }
-        public T Update(T entity)
-        {
-            var model = _dbContext.Entry(entity);
-            model.State = EntityState.Detached;
-            Table.Update(entity);
-
-
-            //model.State = EntityState.Detached;
-            return entity;
-        }
-        public void DeleteRange(List<T> entities)
+   
+        public void DeleteRange(List<TEntity> entities)
         {
             try
             {
@@ -97,7 +137,7 @@ namespace DataAccess_two.HospitalDatabase.Repositories.Concretes.Base
         {
             try
             {
-                List<T> entities = new List<T>();
+                List<TEntity> entities = new List<TEntity>();
                 foreach (var id in entityIds)
                 {
                     var item = Table.Find(id);
@@ -118,7 +158,7 @@ namespace DataAccess_two.HospitalDatabase.Repositories.Concretes.Base
             //    model.State = EntityState.Detached;
             //}
         }
-        public void RemoveRange(List<T> entities)
+        public void RemoveRange(List<TEntity> entities)
         {
             Table.RemoveRange(entities);
         }
@@ -136,10 +176,10 @@ namespace DataAccess_two.HospitalDatabase.Repositories.Concretes.Base
             return withDeleted ? await Table.AsNoTracking().CountAsync() :
                 await Table.AsNoTracking().Where(x => !x.Deleted).CountAsync();
         }
-        public async Task<bool> AnyEntity(Expression<Func<T, bool>> filter) => await Table.AsNoTracking().AnyAsync(filter);
-        public async Task<T> GetLastOrDefault(Expression<Func<T, bool>> filter) => await Table.AsNoTracking().OrderBy(x => x.CreateTime).Where(x => !x.Deleted).LastOrDefaultAsync(filter);
+        public async Task<bool> AnyEntity(Expression<Func<TEntity, bool>> filter) => await Table.AsNoTracking().AnyAsync(filter);
+        public async Task<TEntity> GetLastOrDefault(Expression<Func<TEntity, bool>> filter) => await Table.AsNoTracking().OrderBy(x => x.CreateTime).Where(x => !x.Deleted).LastOrDefaultAsync(filter);
 
-        public async Task<IQueryable<T>> CustomQuery()
+        public async Task<IQueryable<TEntity>> CustomQuery()
         {
             return await Task.FromResult(Table.AsNoTracking());
         }
@@ -293,47 +333,47 @@ namespace DataAccess_two.HospitalDatabase.Repositories.Concretes.Base
         #endregion
 
 
-        public void UpdateRange(List<T> entities)
+        public void UpdateRange(List<TEntity> entities)
         {
             Table.UpdateRange(entities);
         }
 
-        public Task<List<T>> GetAllDeletedControlAsync(Expression<Func<T, bool>> filter = null, bool withDeleted = false, bool companyIdRequired = true)
+        public Task<List<TEntity>> GetAllDeletedControlAsync(Expression<Func<TEntity, bool>> filter = null, bool withDeleted = false, bool companyIdRequired = true)
         {
             throw new NotImplementedException();
         }
 
-        public Task<List<T>> GetAllWithoutBaseEntityParamsSetAsync(Expression<Func<T, bool>> filter = null, bool companyIdRequired = true)
+        public Task<List<TEntity>> GetAllWithoutBaseEntityParamsSetAsync(Expression<Func<TEntity, bool>> filter = null, bool companyIdRequired = true)
         {
             throw new NotImplementedException();
         }
 
-        public Task<PaginationResponseModel<T>> GetPaginateAllAsyncWithIncludeParams(PaginationRequestModel model, Expression<Func<T, bool>> filter, bool companyIdRequired = true, params Expression<Func<T, object>>[] includes)
+        public Task<PaginationResponseModel<TEntity>> GetPaginateAllAsyncWithIncludeParams(PaginationRequestModel model, Expression<Func<TEntity, bool>> filter, bool companyIdRequired = true, params Expression<Func<TEntity, object>>[] includes)
         {
             throw new NotImplementedException();
         }
 
-        public Task<T> GetByIdAsync(Guid id, bool companyIdRequired = true)
+        public Task<TEntity> GetByIdAsync(Guid id, bool companyIdRequired = true)
         {
             throw new NotImplementedException();
         }
 
-        public Task<List<T>> GetAllAsync(Expression<Func<T, bool>> filter = null, bool companyIdRequired = true)
+        public Task<List<TEntity>> GetAllAsync(Expression<Func<TEntity, bool>> filter = null, bool companyIdRequired = true)
         {
             throw new NotImplementedException();
         }
 
-        public Task<T> GetAsync(Expression<Func<T, bool>> filter = null, bool companyIdRequired = true)
+        public Task<TEntity> GetAsync(Expression<Func<TEntity, bool>> filter = null, bool companyIdRequired = true)
         {
             throw new NotImplementedException();
         }
 
-        public Task<List<T>> GetAllAsyncWithIncludeParams(Expression<Func<T, bool>> filter, bool companyIdRequired = true, params Expression<Func<T, object>>[] includes)
+        public Task<List<TEntity>> GetAllAsyncWithIncludeParams(Expression<Func<TEntity, bool>> filter, bool companyIdRequired = true, params Expression<Func<TEntity, object>>[] includes)
         {
             throw new NotImplementedException();
         }
 
-        public Task<T> GetAsyncWithIncludeParams(Expression<Func<T, bool>> filter, bool companyIdRequired = true, params Expression<Func<T, object>>[] includes)
+        public Task<TEntity> GetAsyncWithIncludeParams(Expression<Func<TEntity, bool>> filter, bool companyIdRequired = true, params Expression<Func<TEntity, object>>[] includes)
         {
             throw new NotImplementedException();
         }

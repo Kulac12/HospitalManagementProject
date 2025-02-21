@@ -13,10 +13,11 @@ using System.Threading.Tasks;
 using TMS.Core.Models.PaginationModels;
 using Microsoft.AspNetCore.Http;
 using DataAccess_two.HospitalDatabase.Repositories.Concretes.Base;
+using DataAccess_two.HospitalDatabase.Contexts.EntityFramework;
 
 namespace DataAccess_two.HospitalDatabase.Repositories.Concretes
 {
-    public class FirmRepository : TableRepository<Firm>, IFirmRepository
+    public class FirmRepository : TableRepository<Firm,HospitalDatabaseContext>, IFirmRepository
     {
         private readonly IHttpContextAccessor httpContextAccessor;
 

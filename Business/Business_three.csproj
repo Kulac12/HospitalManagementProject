@@ -7,11 +7,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="AC\Concrete\" />
     <Folder Include="BusinessAspect\Autofac\" />
     <Folder Include="Messages\ValidationMessages\" />
     <Folder Include="Messages\ResponseMessages\" />
-    <Folder Include="AC\Abstract\" />
     <Folder Include="Validation\" />
   </ItemGroup>
 
