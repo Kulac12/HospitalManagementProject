@@ -1,4 +1,5 @@
-﻿using DataAccess_two.HospitalDatabase.Repositories.Abstracts.Base;
+﻿using Core.Domain_one.Abstract;
+using DataAccess_two.HospitalDatabase.Repositories.Abstracts.Base;
 using Domain_one.HospitalDatabase.Tables;
 using System;
 using System.Collections.Generic;

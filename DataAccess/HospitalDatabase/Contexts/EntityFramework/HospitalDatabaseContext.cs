@@ -17,7 +17,8 @@ namespace DataAccess_two.HospitalDatabase.Contexts.EntityFramework
         }
 
         #region Tables
-        public DbSet<Firm> Firm { get; set; }
+     
+        public DbSet<Category> Category { get; set; }
         #endregion
     }
 }

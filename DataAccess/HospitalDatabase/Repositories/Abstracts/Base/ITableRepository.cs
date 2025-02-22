@@ -22,7 +22,7 @@ namespace DataAccess_two.HospitalDatabase.Repositories.Abstracts.Base
         List<T> GetAll(Expression<Func<T, bool>> filter = null);
         T Get(Expression<Func<T, bool>> filter);
         void Add(T entity);
-        T Update(T entity);
+        void Update(T entity);
         void Delete(T entity);
     }
 }
