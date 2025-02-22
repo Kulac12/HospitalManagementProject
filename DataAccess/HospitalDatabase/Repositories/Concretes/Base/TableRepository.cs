@@ -15,8 +15,9 @@ using Core.Domain_one.Abstract;
 
 namespace DataAccess_two.HospitalDatabase.Repositories.Concretes.Base
 {
+    //EnginDemiroğ --> EfEntityRepositoryBase<TEntity, TContext> : IEntityRepository<TEntity>
     public class TableRepository<TEntity, TContext> : ITableRepository<TEntity>
-        where TEntity : class, IEntity, new()    // bu bir veri tabanı tablosu olacak ama IEntity direk yazamasın diye new() yazıyoruz. 
+        where TEntity : BaseEntity, IEntity, new()    // bu bir veri tabanı tablosu olacak ama IEntity direk yazamasın diye new() yazıyoruz. 
        where TContext : DbContext, new()  //Bu bir DbContext sınıfı olacak ama direk kendi adını yazamasın diye yine onu da new ledik.
     {
         public void Add(TEntity entity)
@@ -39,7 +40,7 @@ namespace DataAccess_two.HospitalDatabase.Repositories.Concretes.Base
             throw new NotImplementedException();
         }
 
-        public void Update(TEntity entity)
+        public TEntity Update(TEntity entity)
         {
             throw new NotImplementedException();
         }

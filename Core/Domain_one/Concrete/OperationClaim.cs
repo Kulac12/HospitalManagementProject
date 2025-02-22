@@ -1,4 +1,6 @@
-﻿namespace Core.Entities.Concrete
+﻿using Core.Domain_one.Abstract;
+
+namespace Core.Domain_one.Concrete
 {
     public class OperationClaim:IEntity
     {

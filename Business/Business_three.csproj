@@ -13,4 +13,9 @@
     <Folder Include="Validation\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\DataAccess\DataAccess_two.csproj" />
+    <ProjectReference Include="..\Domain\Domain_one.csproj" />
+  </ItemGroup>
+
 </Project>
