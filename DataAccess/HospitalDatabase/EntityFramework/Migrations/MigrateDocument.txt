@@ -1,0 +1,5 @@
+Add-Migration mig1
+Update-Database
+
+
+Konum/ DataAccess_two / HospitalDatabase/Contexts/EF

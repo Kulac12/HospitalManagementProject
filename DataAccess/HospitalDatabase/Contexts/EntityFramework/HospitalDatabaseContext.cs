@@ -1,4 +1,5 @@
-﻿using Domain_one.HospitalDatabase.Tables;
+﻿
+using Domain_one.HospitalDatabase.Tables;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
 using System;
@@ -30,8 +31,9 @@ namespace DataAccess_two.HospitalDatabase.Contexts.EntityFramework
             public DbSet<Doctor> Doctor { get; set; }
             public DbSet<Patient> Patient { get; set; }
             public DbSet<Appointment> Appointment { get; set; }
-           
-            #endregion
+            public DbSet<OperationClaim> OperationClaims { get; set; }
+            public DbSet<UserOperationClaim> UserOperationClaims { get; set; }
+        #endregion
 
         #region
         protected override void OnModelCreating(ModelBuilder modelBuilder)

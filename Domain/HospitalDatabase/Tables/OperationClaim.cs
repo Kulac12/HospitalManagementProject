@@ -1,10 +1,12 @@
 ﻿using Core.Domain_one.Abstract;
 
-namespace Core.Domain_one.Concrete
+
+
+namespace Domain_one.HospitalDatabase.Tables
 {
     public class OperationClaim:IEntity
     {
-        public int Id { get; set; }
+        public Guid Id { get; set; }
         public string Name { get; set; }
     }
 }
