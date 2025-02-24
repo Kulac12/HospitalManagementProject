@@ -4,12 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Core.Models.EnumModels
+namespace Business_three.Models.EnumModels
 {
     public enum Role
     {
         Admin,
-        Doktor,
+        Doctor,
         Patient
     }
 }

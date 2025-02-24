@@ -1,5 +1,5 @@
 ﻿using Core.Domain_one.Abstract;
-using Core.Models.EnumModels;
+using Business_three.Models.EnumModels;
 using Domain_one.HospitalDatabase.Tables.Base;
 using System;
 using System.Collections.Generic;
@@ -17,7 +17,15 @@ namespace Domain_one.HospitalDatabase.Tables
         public byte[] PasswordHash { get; set; }
         public byte[] PasswordSalt { get; set; }
 
+
+
+        //enum olarak sakladık (db string olarak tutuldu.)
         public Role UserRole;
         public string UserImgFile { get; set; }
+
+
+        //Navigation Property
+        public Doctor Doctor { get; set; }
+        public Patient Patient { get; set; }
     }
 }

@@ -16,5 +16,9 @@ namespace DataAccess_two.HospitalDatabase.Repositories.Concretes
     public class CategoryRepository : TableRepository<Category, HospitalDatabaseContext>, ICategoryRepository
     {
       
+
+
+
+
     }
 }

@@ -12,7 +12,7 @@ using TMS.Core.Models.PaginationModels;
 namespace DataAccess_two.HospitalDatabase.Repositories.Abstracts.Base
 {
     //generic constraint
-
+    //**
     //IEntity: IEntity olabilir veya IEntity implement eden bir nesne olabilir
     //new()  : new'lenebilir olmalı
 
