@@ -1,5 +1,5 @@
 ﻿using Core.Domain_one.Abstract;
-using Business_three.Models.EnumModels;
+using Core.Models.EnumModels;
 using Domain_one.HospitalDatabase.Tables.Base;
 using System;
 using System.Collections.Generic;
@@ -21,6 +21,8 @@ namespace Domain_one.HospitalDatabase.Tables
 
         //enum olarak sakladık (db string olarak tutuldu.)
         public Role UserRole;
+
+
         public string UserImgFile { get; set; }
 
 

@@ -22,7 +22,11 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Business\Business_three.csproj" />
+    <ProjectReference Include="..\ConsoleUI\ConsoleUI.csproj" />
+    <ProjectReference Include="..\Core\Core.csproj" />
     <ProjectReference Include="..\DataAccess\DataAccess_two.csproj" />
+    <ProjectReference Include="..\Domain\Domain_one.csproj" />
   </ItemGroup>
 
 </Project>

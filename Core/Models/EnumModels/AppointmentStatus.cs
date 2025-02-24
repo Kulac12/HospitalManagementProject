@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Business_three.Models.EnumModels
+namespace Core.Models.EnumModels
 {
     public enum AppointmentStatus
     {

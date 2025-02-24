@@ -10,8 +10,8 @@ namespace Business_three.Services.Abstract
 {
     public interface ICategoryService
     {
-       Task< IDataResult<List<Category>>> GetAll();
-       Task<IDataResult<Category>> GetById(Guid categoryId);
+       IDataResult<List<Category>> GetAll();
+       IDataResult<Category> GetById(Guid categoryId);
 
     }
 }

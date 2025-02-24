@@ -1,4 +1,6 @@
-﻿using Core.Domain_one.Abstract;
+﻿
+using Core.Domain_one.Abstract;
+using Core.Models.EnumModels;
 using Domain_one.HospitalDatabase.Tables.Base;
 using System;
 using System.Collections.Generic;
@@ -6,7 +8,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Business_three.Models.EnumModels;
+
 
 namespace Domain_one.HospitalDatabase.Tables
 {
