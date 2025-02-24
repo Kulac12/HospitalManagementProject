@@ -27,8 +27,9 @@ namespace Domain_one.HospitalDatabase.Tables
         public Polyclinic Polyclinic { get; set; }
         public User User { get; set; }
 
-        // Many-to-Many ilişki
-        public ICollection<DoctorPatient> DoctorPatient { get; set; }
 
+
+        // 1 doktor, N randevu
+        public ICollection<Appointment> Appointment { get; set; }
     }
 }

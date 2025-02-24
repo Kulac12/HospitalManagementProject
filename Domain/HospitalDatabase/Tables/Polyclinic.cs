@@ -12,7 +12,8 @@ namespace Domain_one.HospitalDatabase.Tables
     {
         public string PoliclinicName { get; set; }
         public string PoliclinicDescription { get; set; }
-       
 
+        // 1 poliklinik, N doktor
+        public ICollection<Doctor> Doctor { get; set; }
     }
 }

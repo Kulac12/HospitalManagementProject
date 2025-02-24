@@ -18,9 +18,10 @@ namespace Domain_one.HospitalDatabase.Tables
         public Guid PatientId { get; set; } // Foreign Key
         public Patient Patient { get; set; } // 1 Hasta, N Randevu
 
+
         [ForeignKey(nameof(Doctor))]
         public Guid DoctorId { get; set; } // Foreign Key
-        public Doctor Doctor { get; set; } // 1 Doktor, N Randev
+        public Doctor Doctor { get; set; } // 1 Doktor, N Randevu
 
         public DateTime Date { get; set; } // Randevu Tarihi
         public TimeSpan Time { get; set; } // Randevu Saati

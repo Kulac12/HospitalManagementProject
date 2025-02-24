@@ -16,11 +16,11 @@ namespace Domain_one.HospitalDatabase.Tables
         public string Phone { get; set; }
 
 
-        [ForeignKey(nameof(Doctor))]
+        [ForeignKey(nameof(User))]
         public Guid UserId { get; set; }
+        public User User { get; set; }
 
-
-        //Tablolar ile aralarındaki ilişki
-        public ICollection<User> User { get; set; }
+        // 1 hasta, N randevu
+        public ICollection<Appointment> Appointment { get; set; }
     }
 }
